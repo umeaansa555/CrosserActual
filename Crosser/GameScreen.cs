@@ -27,6 +27,7 @@ namespace Crosser
         public GameScreen()
         {
             InitializeComponent();
+            //bg sound is here rather than in InitializeGame in order to have it play continuously on this screen
             SoundPlayer trafficPlayer = new SoundPlayer(Properties.Resources.traffichorns);
             trafficPlayer.Play();
             InitializeGame();
@@ -38,7 +39,7 @@ namespace Crosser
 
             enemies.Clear();
 
-            for (int i = 1; i <= 3; i++)
+            for (int i = 1; i <= score; i++)
             {
                 newEnemy();
             }
@@ -49,7 +50,6 @@ namespace Crosser
 
         public void newEnemy()
         {
-            //int x = randGen.Next(10, this.Width - 30);
             int y = randGen.Next(50, this.Height - 30);
             int xSpeed = randGen.Next(1, 10);
             Enemy newEnemy = new Enemy(y, xSpeed);
