@@ -39,7 +39,7 @@ namespace Crosser
 
             enemies.Clear();
 
-            for (int i = 1; i <= score; i++)
+            for (int i = 1; i <= score + 3; i++)
             {
                 newEnemy();
             }
@@ -49,9 +49,9 @@ namespace Crosser
         }
 
         public void newEnemy()
-        {
+        { // create new enemy with random speed and coordinates
             int y = randGen.Next(50, this.Height - 30);
-            int xSpeed = randGen.Next(1, 10);
+            int xSpeed = randGen.Next(1, 15);
             Enemy newEnemy = new Enemy(y, xSpeed);
             enemies.Add(newEnemy);
         }
@@ -59,6 +59,7 @@ namespace Crosser
         private void engine_Tick(object sender, EventArgs e)
         {
             #region shmovement
+            // send direction to crosser, which then takes care of movement in that direction
             if (leftArrowDown && crosser.x > 0)
             {
                 crosser.Move("left");
@@ -79,7 +80,7 @@ namespace Crosser
 
 
             foreach (Enemy n in enemies)
-            {
+            { // constrain enemy movement to stay on the screen
                 n.Move(this.Width, this.Height);
             }
 
@@ -95,7 +96,7 @@ namespace Crosser
             }
 
             foreach (Enemy n in enemies)
-            {
+            { // if crosser hits an enemy, end the game
                 if (n.Collision(crosser))
                 {
 
@@ -106,7 +107,7 @@ namespace Crosser
                 }
             }
 
-
+            // if crosser reaches the top of the screen, gain 1 point and progress to the next "level"
             if (crosser.y == 0)
             {
                 score++;
@@ -119,7 +120,7 @@ namespace Crosser
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
-        {
+        { // make player character and enemies visible and distinct
             e.Graphics.FillRectangle(yellowBrush, crosser.x, crosser.y, crosser.width, crosser.height);
             foreach (Enemy n in enemies)
             {
@@ -128,7 +129,7 @@ namespace Crosser
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
+        { // turn key inputs into player controls
             switch (e.KeyCode)
             {
                 case Keys.Left:
@@ -147,7 +148,7 @@ namespace Crosser
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
-        {
+        { // turn key inputs into player controls
             switch (e.KeyCode)
             {
                 case Keys.Left:
