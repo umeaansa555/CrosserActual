@@ -18,6 +18,7 @@ namespace Crosser
             InitializeComponent();
             SoundPlayer ignitionPlayer = new SoundPlayer(Properties.Resources.car);
             ignitionPlayer.Play();
+            this.Dock = DockStyle.None;
         }
 
         private void startButton_Click(object sender, EventArgs e)

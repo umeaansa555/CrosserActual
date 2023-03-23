@@ -70,6 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.DimGray;
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.startButton);

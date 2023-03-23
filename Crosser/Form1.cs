@@ -23,6 +23,8 @@ namespace Crosser
         public Form1()
         {
             InitializeComponent();
+            CenterToScreen();
+            Cursor.Hide();
             Form1.ChangeScreen(this, new MenuScreen());
         }
 
